@@ -1,0 +1,20 @@
+[
+    {
+        "Title": "Calgary",
+        "Address": "University of Calgary",
+        "Parking spots": 60,
+        "Total": 100,
+        "Price": 25.00,
+        "Hours": "24 Hours"
+    },
+
+    {
+        "Title": "Banff",
+        "Address": "Banff trail SE",
+        "Parking spots": 50,
+        "Total": 80,
+        "Price": 30.00,
+        "Hours": "18 Hours"
+    }
+
+]
