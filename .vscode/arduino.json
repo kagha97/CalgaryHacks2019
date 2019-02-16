@@ -1,0 +1,5 @@
+{
+    "sketch": "SmartParking.ino",
+    "board": "arduino:avr:leonardo",
+    "port": "COM6"
+}
