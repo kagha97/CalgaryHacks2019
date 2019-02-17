@@ -5,11 +5,12 @@ const board = new five.Board();
 const dweetio = new dweetClient();
 
 //parking info
-var prevTime = (new Date()).getSeconds();
 var parkingInfo = {id : 1, availableSpot : 98, totalSpot : 100}
 
-board.on('ready', () => {
+//timer
+var prevTime = (new Date()).getSeconds();
 
+board.on('ready', () => {
     //LEDs
     const ledRed = new five.Led({
         pin : 12
@@ -34,11 +35,12 @@ board.on('ready', () => {
     });
 });
 
-
+//send data through socket
 sendData = (newTime, callBack) => {
     const dweetThing = "smart-parking-calgaryhacks-2019";
     const minTimeForPassingCar = 5;
 
+    //if minimum time has elapsed then increase counter and send data
     if (newTime - prevTime > minTimeForPassingCar || prevTime - newTime > minTimeForPassingCar) {
         parkingInfo.availableSpot++; //increase carcounter
         dweetio.dweet_for(dweetThing, parkingInfo, (err, dweet) => {
