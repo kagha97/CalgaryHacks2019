@@ -31,6 +31,7 @@ io.on('connection', (socket) => {
 dweetio.listen_for(dweetThing, (dweet) => {
   console.log(dweet.content);
   const data = dweet.content;
+  
   io.emit('data', data);
 });
 

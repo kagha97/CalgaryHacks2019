@@ -1,12 +1,14 @@
 const dweetClient = require('node-dweetio');
 var five = require("johnny-five");
 
-//
-const portNo = 1;
+//parking location config
+const portNo = 0;
 const parkingLocation = 0;
 
 //get data
 var data = require('../data');
+
+//parking model
 const Parking = data.ParkingModel;
 
 // connect board at specified port
@@ -53,7 +55,6 @@ Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => 
 
         //if minimum time has elapsed then increase counter and send data
         if (newTime - prevTime > minTimeForPassingCar || prevTime - newTime > minTimeForPassingCar) {
-            parkingInfo.availableSpot--; //increase carcounter
             dweetio.dweet_for(dweetThing, parkingInfo, (err, dweet) => {
                 if (err) {
                     console.log("dweet error " + err);
@@ -63,6 +64,7 @@ Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => 
                             title: "University of Calgary"
                         })
                         .then((response) => {
+                            //update database
                             if (response.length > 0) {
                                 let aParking = response[0];
                                 aParking.availableSpot--;
