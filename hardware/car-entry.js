@@ -44,7 +44,7 @@ sendData = (newTime, callBack) => {
 
     //if minimum time has elapsed then increase counter and send data
     if (newTime - prevTime > minTimeForPassingCar || prevTime - newTime > minTimeForPassingCar) {
-        parkingInfo.availableSpot++; //increase carcounter
+        parkingInfo.availableSpot--; //increase carcounter
         dweetio.dweet_for(dweetThing, parkingInfo, (err, dweet) => {
             if (err) {
                 console.log("dweet error " + err);
