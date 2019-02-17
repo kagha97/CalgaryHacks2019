@@ -11,22 +11,32 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-  <div class="jumbotron text-center">
-    <h1>Calgary Parking Monitor</h1>
-    <p>Welcome!</p>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-4">
-        <h3>List of Parkings</h3>
-        <button id="location" type="button" class="btn btn-success">University of Calgary</button>
-        <br>
-        <button id="location" type="button" class="btn btn-success">City Hall</button>
-        <br>
-        <button id="location" type="button" class="btn btn-success">Test</button>
-      </div>
+
+<div id = "banner" class="jumbotron text-center">
+  <img id = "logo" src = "images/logo.png">
+  <h1 style="color: white">Calgary Parking Monitor</h1>
+  <p style="color: white">Welcome!</p> 
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>List of Parkings</h3>
+      <div class="list-group" style="width: 18rem">
+          <a href="#" class="list-group-item list-group-item-action active">
+            University Calgary
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Supertore</a>
+          <a href="#" class="list-group-item list-group-item-action">Marlborough Mall</a>
+          <a href="#" class="list-group-item list-group-item-action">Mcknight Station</a>
+          <a href="#" class="list-group-item list-group-item-action">Sunridge Mall</a>
+        </div>
+    </div>
+   
+    <div class="col-sm-4">
+              
+       
       <div class="col-sm-4">
         <h3>Information</h3>
         <div class="card" style="width: 18rem;">
@@ -47,14 +57,13 @@
             <p class="card-text">$20.00</p>
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body" style="background-color:rgb(62, 177, 206)">
-            <h5 class="card-title">Time</h5>
-            <p class="card-text">9:30AM to 9:30PM</p>
-          </div>
-        </div>
       </div>
-      <div class="col-sm-4">
+
+     
+
+    </div>
+    <div class="col-sm-3">
+      
         <h3>Space</h3>
         <div class="card" style="width: 18rem;">
           <div class="card-body" style="background-color:rgb(180, 142, 38)">
