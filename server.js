@@ -25,6 +25,9 @@ app.get('/', (req, res) => {
 //socket connection with client
 io.on('connection', (socket) => {
   console.log('Connection has been established with browser.');
+  Parking.find().then((response) => {
+    io.emit('data', response);
+  });
   socket.on('disconnect', () => {
     console.log('Browser client disconnected from the connection.');
   });
@@ -32,9 +35,24 @@ io.on('connection', (socket) => {
 
 //dweetio connection with machine
 dweetio.listen_for(dweetThing, (dweet) => {
-
-  Parking.find().then((response) => {
-    io.emit('data', response);
-  });
+  console.log(dweet);
+    Parking.find({
+              title: dweet.content.parkingInfo.title,
+          })
+              .then((response) => {
+                  //update database and send response to client
+                  if (response.length > 0) {
+                      let aParking = response[0];
+                      dweet.content.updateType === 'decrease' ? aParking.availableSpot-- : aParking.availableSpot++;
+                      //send response to client
+                      aParking.save().then(() => {
+                          Parking.find().then(parkingData => {
+                              io.emit('data', parkingData);
+                              console.log(response);
+                          })
+                          .catch(console.log);
+                      }).catch(console.log);
+                  }
+              }).catch(console.log);
 
 });

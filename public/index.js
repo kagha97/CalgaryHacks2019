@@ -11,12 +11,12 @@ class Parking {
     this.hours = info.hours;
   }
 
-  static arrayToString(array) {
-    let strPrice = "";
-    array.forEach(price => {
-      strPrice += price + " ";
-    });
-    return strPrice;
+  get priceStr() {
+    return "$" + this.prices.hr + "/hr, $" + this.prices.day + "/day, $" + this.prices.month + "/month";
+  }
+
+  get hoursStr() {
+    return "weekdays  : " + this.hours.weekdays + "\n weekends : " + this.hours.weekends;
   }
 }
 
@@ -28,7 +28,8 @@ socket.on('data', data => {
     parkings.push(new Parking(aParkingInfo));
   });
   updateListOfParkings();
-  console.log(data);
+  let selectedTitle = document.getElementsByClassName("list-group-item list-group-item-action active");
+  selectedTitle.length > 0 ? updateUI(selectedTitle[0].innerHTML) : "";
 });
 
 
@@ -38,11 +39,10 @@ updateListOfParkings = () => {
   if (totalListOfItems !== parkings.length) {
       parkings.forEach(aParking => {
         var item = document.createElement("a");
-        item.href = "#";
         item.classList.add("list-group-item");
         item.classList.add("list-group-item-action");
         item.innerHTML = aParking.title;
-        item.addEventListener("click", updateDOM);
+        item.addEventListener("click", showParkingInfo);
         document.getElementById('parkingList').appendChild(item);
       });
   }
@@ -50,29 +50,23 @@ updateListOfParkings = () => {
 
 
 //onclick handler function for list of parking
-function updateDOM() {
+function showParkingInfo() {
   var selected = document.getElementsByClassName("list-group-item list-group-item-action active");
   if (selected.length > 0) {
     selected[0].className = selected[0].className.replace("active", " ");
   }
-  
   this.className += "list-group-item list-group-item-action active";
-  let filteredParking = parkings.find((aParking) => aParking.title == this.innerHTML);
-
-  document.getElementById("title").innerHTML = filteredParking.title;
-  document.getElementById("address").innerHTML = filteredParking.address;
-  document.getElementById("available-space").innerHTML = filteredParking.availableSpot;
-  document.getElementById("total-space").innerHTML = filteredParking.totalSpot;
-  document.getElementById('prices').innerHTML = Parking.arrayToString(filteredParking.prices);
-  document.getElementById('hours').innerHTML = Parking.arrayToString(filteredParking.hours);
+  updateUI(this.innerHTML);
 }
 
-// //get list of parkings
-// var parkingListContainer = document.getElementById("parkingList");
-// var parkingLists = parkingListContainer.getElementsByClassName("list-group-item list-group-item-action");
 
+function updateUI(parkingTitle) {
+    let filteredParking = parkings.find((aParking) => aParking.title == parkingTitle);
 
-// //asssign onclick to each item in the list of parking
-// for (var i = 0; i < parkingLists.length; i++) {
-//   parkingLists[i].addEventListener("click", updateDOM);
-// }
+    document.getElementById("title").innerHTML = filteredParking.title;
+    document.getElementById("address").innerHTML = filteredParking.address;
+    document.getElementById("available-space").innerHTML = filteredParking.availableSpot;
+    document.getElementById("total-space").innerHTML = filteredParking.totalSpot;
+    document.getElementById('prices').innerHTML = filteredParking.priceStr;
+    //document.getElementById('hours').innerHTML = filteredParking.hoursStr;
+}

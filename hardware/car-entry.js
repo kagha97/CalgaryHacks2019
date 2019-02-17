@@ -2,8 +2,8 @@ const dweetClient = require('node-dweetio');
 var five = require("johnny-five");
 
 //parking location config
-const portNo = 0;
-const parkingLocation = 0;
+const portNo = 1;
+const parkingLocation = 1;
 
 //get data
 var data = require('../data');
@@ -40,10 +40,7 @@ Parking.find({ title: data.listOfParkings[parkingLocation] }).then((response) =>
         const irSensor = new five.Motion(6);
         irSensor.on("motionend", () => {
             //showing lights as per the parking avability
-            Parking.find({
-                title: data.listOfParkings[parkingLocation]
-            }).then((response) => {
-                parkingInfo = response.length > 0 ? response[0] : "";
+            
                 if (parkingInfo.availableSpot > 0) {
                     ledBlue.on();
                     ledRed.off();
@@ -66,8 +63,6 @@ Parking.find({ title: data.listOfParkings[parkingLocation] }).then((response) =>
                         tempo: 100
                     });
                 }
-            })
-                .catch();
 
         });
     });
@@ -80,30 +75,18 @@ Parking.find({ title: data.listOfParkings[parkingLocation] }).then((response) =>
 
         //if minimum time has elapsed then increase counter and send data
         if (newTime - prevTime > minTimeForPassingCar || prevTime - newTime > minTimeForPassingCar) {
-            dweetio.dweet_for(dweetThing, parkingInfo, (err, dweet) => {
+            let sendBody = {parkingInfo, updateType : 'decrease'}
+            dweetio.dweet_for(dweetThing, sendBody, (err, dweet) => {
                 if (err) {
                     console.log("dweet error " + err);
                 }
                 if (dweet) {
-                    Parking.find({
-                        title: "University of Calgary"
-                    })
-                        .then((response) => {
-                            //update database
-                            if (response.length > 0) {
-                                let aParking = response[0];
-                                aParking.availableSpot--;
-                                aParking.save().then(() => {
-                                    parkingInfo.availableSpot = aParking.availableSpot;
-                                    console.log(aParking);
-                                }).catch();
-                            }
-                        }).catch();
+                    console.log(dweet);
+                    parkingInfo.availableSpot--;
                 }
             });
             prevTime = newTime;
         }
     }
 }).catch();
-
 
