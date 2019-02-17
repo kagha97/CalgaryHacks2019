@@ -39,6 +39,13 @@ Parking.find({ title: data.listOfParkings[parkingLocation] }).then((response) =>
         //IR Sensor
         const irSensor = new five.Motion(6);
         irSensor.on("motionend", () => {
+            Parking.find({
+                    title: data.listOfParkings[parkingLocation]
+                }).then((newInfo) => {
+            parkingInfo = newInfo.length > 0 ? newInfo[0] : "";
+                if (parkingInfo == "") {
+                    throw new Error();
+                }
             //showing lights as per the parking avability
             
                 if (parkingInfo.availableSpot > 0) {
@@ -63,7 +70,7 @@ Parking.find({ title: data.listOfParkings[parkingLocation] }).then((response) =>
                         tempo: 100
                     });
                 }
-
+            }).catch(console.log);
         });
     });
 
