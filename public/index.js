@@ -1,5 +1,5 @@
 const socket = io();
 
-socket.on('sensor-data', data => {
+socket.on('data', data => {
   console.log(data);
 });
