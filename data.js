@@ -19,7 +19,7 @@ var parkingSchema = mongoose.Schema({
 var ParkingModel = mongoose.model('parking', parkingSchema, 'parkings');
 
 //list of ports
-const port1 =  {port : 'COM6'};
+const port1 =  {port : 'COM5'};
 const port2 = {port : 'COM9'};
 const port3 = {port : 'COM12'};
 const ports = [port1, port2, port3];
