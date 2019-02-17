@@ -11,70 +11,66 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
-<div id = "banner" class="jumbotron text-center">
-  <img id = "logo" src = "images/logo.png">
-  <h1 style="color: white">Calgary Parking Monitor</h1>
-  <p style="color: white">Welcome!</p> 
-</div>
-  
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>List of Parkings</h3>
-      <div id = "parkingList" class="list-group" style="width: 18rem">
-          <a id = "uofc" href="#" class="list-group-item list-group-item-action active">
-            University Calgary
-          </a>
-          <a id = "st" href="#" class="list-group-item list-group-item-action" >Superstore</a>
-          <a id = "mm" href="#" class="list-group-item list-group-item-action">Marlborough Mall</a>
-          <a id = "mk" href="#" class="list-group-item list-group-item-action">Mcknight Station</a>
-          <a id = "sm" href="#" class="list-group-item list-group-item-action">Sunridge Mall</a>
-        </div>
-    </div>
-   
-    <div class="col-sm-4">
-              
-       
+  <div id="banner" class="jumbotron text-center">
+    <img id="logo" src="images/logo.png">
+    <h1 style="color: white">Calgary Parking Monitor</h1>
+    <p style="color: white">Welcome!</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
       <div class="col-sm-4">
-        <h3>Information</h3>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body" style="background-color:cornflowerblue">
-            <h5 class="card-title">Title</h5>
-            <p id = "title" class="card-text">University Of Calgary</p>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body" style="background-color:rgb(17, 106, 189)">
-            <h5 class="card-title">Address</h5>
-            <p class="card-text">UofC Drive 3202 T3N0P5 Calgary, AB</p>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body" style="background-color:rgb(41, 135, 197)">
-            <h5 class="card-title">Cost</h5>
-            <p class="card-text">$20.00</p>
+        <h3>List of Parkings</h3>
+        <div>
+          <div id="parkingList" class="list-group list-width">
           </div>
         </div>
       </div>
 
-     
+      <div class="col-sm-4">
 
-    </div>
-    <div class="col-sm-3">
-      
+
+        <div class="col-sm-4">
+          <h3>Information</h3>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body" style="background-color:cornflowerblue">
+              <h5 class="card-title">Title</h5>
+              <p id="title" class="card-text">University of Calgary</p>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body" style="background-color:rgb(17, 106, 189)">
+              <h5 class="card-title">Address</h5>
+              <p id="address" class="card-text">UofC Drive 3202 T3N0P5 Calgary, AB</p>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body" style="background-color:rgb(41, 135, 197)">
+              <h5 class="card-title">Cost</h5>
+              <p id='prices' class="card-text">$20.00</p>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="col-sm-3">
+
         <h3>Space</h3>
         <div class="card" style="width: 18rem;">
           <div class="card-body" style="background-color:rgb(180, 142, 38)">
             <h5 class="card-title">Available Space</h5>
-            <p class="card-text">30</p>
+            <p id="available-space" class="card-text">30</p>
           </div>
         </div>
         <div class="card" style="width: 18rem;">
           <div class="card-body" style="background-color:rgb(211, 145, 24)">
             <h5 class="card-title">Total Space</h5>
-            <p class="card-text">50</p>
+            <p id="total-space" class="card-text">50</p>
           </div>
         </div>
       </div>

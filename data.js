@@ -9,21 +9,36 @@ const dbConnection = mongoose.connect('mongodb://localhost:27017/smart_parking',
 });
 
 var parkingSchema = mongoose.Schema({
-    title : String,
-    availableSpot : Number,
-    totalSpot : Number,
-    prices : Object,
-    hours : Object,
+    title: String,
+    availableSpot: Number,
+    totalSpot: Number,
+    prices: Object,
+    hours: Object,
 });
 
 var ParkingModel = mongoose.model('parking', parkingSchema, 'parkings');
 
 //list of ports
-const port1 =  {port : 'COM5'};
-const port2 = {port : 'COM9'};
-const port3 = {port : 'COM12'};
+const port1 = {
+    port: 'COM6'
+};
+const port2 = {
+    port: 'COM9'
+};
+const port3 = {
+    port: 'COM12'
+};
 const ports = [port1, port2, port3];
 //list of parking titles
 const listOfParkings = ['University of Calgary', 'Sunridge Mall', 'Bow Valley College'];
 
-module.exports = {dweetThing, ports, dbConnection, ParkingModel, listOfParkings};
+const MinTimeForPassingCar = 3;
+
+module.exports = {
+    dweetThing,
+    ports,
+    dbConnection,
+    ParkingModel,
+    listOfParkings,
+    MinTimeForPassingCar
+};

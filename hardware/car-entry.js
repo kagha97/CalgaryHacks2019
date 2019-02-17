@@ -16,7 +16,7 @@ const board = new five.Board(data.ports[portNo]);
 const dweetio = new dweetClient();
 
 //connect to database and get info of parking
-Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => {
+Parking.find({ title: data.listOfParkings[parkingLocation] }).then((response) => {
 
     var parkingInfo = response.length > 0 ? response[0] : "";
     //timer
@@ -31,27 +31,52 @@ Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => 
             pin: 13
         });
 
+        //buzzer
+        const buzzer = new five.Piezo({
+            pin: 5
+        });
+
         //IR Sensor
         const irSensor = new five.Motion(6);
         irSensor.on("motionend", () => {
-            sendData((new Date()).getSeconds(), () => {
-                //showing lights as per the parking avability
-                if (parkingInfo.availableSpot < parkingInfo.totalSpot) {
+            //showing lights as per the parking avability
+            Parking.find({
+                title: data.listOfParkings[parkingLocation]
+            }).then((response) => {
+                parkingInfo = response.length > 0 ? response[0] : "";
+                if (parkingInfo.availableSpot > 0) {
                     ledBlue.on();
                     ledRed.off();
+                    sendData((new Date()).getSeconds());
                 } else {
                     ledBlue.off();
                     ledRed.on();
+                    board.repl.inject({
+                        buzzer
+                    });
+                    buzzer.play({
+                        song: [
+                            ["C4", 1 / 4],
+                            ["C4", 1 / 4],
+                            ["C4", 1 / 4],
+                            ["C4", 1 / 4],
+                            ["C4", 1 / 4],
+                            ["C4", 1 / 4],
+                        ],
+                        tempo: 100
+                    });
                 }
-            });
+            })
+                .catch();
+
         });
     });
 
 
     //send data through socket
-    sendData = (newTime, callBack) => {
+    sendData = (newTime) => {
         const dweetThing = data.dweetThing;
-        const minTimeForPassingCar = 5;
+        const minTimeForPassingCar = data.MinTimeForPassingCar;
 
         //if minimum time has elapsed then increase counter and send data
         if (newTime - prevTime > minTimeForPassingCar || prevTime - newTime > minTimeForPassingCar) {
@@ -61,8 +86,8 @@ Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => 
                 }
                 if (dweet) {
                     Parking.find({
-                            title: "University of Calgary"
-                        })
+                        title: "University of Calgary"
+                    })
                         .then((response) => {
                             //update database
                             if (response.length > 0) {
@@ -71,19 +96,14 @@ Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => 
                                 aParking.save().then(() => {
                                     parkingInfo.availableSpot = aParking.availableSpot;
                                     console.log(aParking);
-                                }).catch(() => console.log("Error while updating counter!"));
+                                }).catch();
                             }
-                        }).catch((err) => {
-                            console.log("Error updating db!" + err);
-                        });
+                        }).catch();
                 }
             });
             prevTime = newTime;
         }
-        callBack();
     }
-}).catch(() => {
-    console.log("unable to connect to database!");
-});
+}).catch();
 
 

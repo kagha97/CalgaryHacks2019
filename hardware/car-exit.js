@@ -27,24 +27,12 @@ Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => 
         const ledRed = new five.Led({
             pin: 12
         });
-        const ledBlue = new five.Led({
-            pin: 13
-        });
 
         //IR Sensor
         const irSensor = new five.Motion(6);
         irSensor.on("motionend", () => {
             sendData((new Date()).getSeconds(), () => {
                 ledRed.on();
-                ledBlue.off();
-                //showing lights as per the parking avability
-                // if (parkingInfo.availableSpot < parkingInfo.totalSpot) {
-                //     ledBlue.on();
-                //     ledRed.off();
-                // } else {
-                //     ledBlue.off();
-                //     ledRed.on();
-                // }
             });
         });
     });
@@ -53,7 +41,7 @@ Parking.find({title : data.listOfParkings[parkingLocation]}).then((response) => 
     //send data through socket
     sendData = (newTime, callBack) => {
         const dweetThing = data.dweetThing;
-        const minTimeForPassingCar = 5;
+        const minTimeForPassingCar = data.MinTimeForPassingCar;
 
         //if minimum time has elapsed then increase counter and send data
         if ((newTime - prevTime > minTimeForPassingCar || prevTime - newTime > minTimeForPassingCar) && parkingInfo.availableSpot < parkingInfo.totalSpot)  {

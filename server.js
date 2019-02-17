@@ -10,6 +10,9 @@ var io = require('socket.io').listen(server);
 
 //collect data from file
 const data = require('./data');
+//parking model
+const Parking = data.ParkingModel;
+
 const dweetio = new dweetClient();
 const dweetThing = data.dweetThing;
 
@@ -29,9 +32,9 @@ io.on('connection', (socket) => {
 
 //dweetio connection with machine
 dweetio.listen_for(dweetThing, (dweet) => {
-  console.log(dweet.content);
-  const data = dweet.content;
-  
-  io.emit('data', data);
-});
 
+  Parking.find().then((response) => {
+    io.emit('data', response);
+  });
+
+});
