@@ -4,7 +4,9 @@
   "description": "Hackaton project",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "johnny-five": "^1.0.0",
+    "node-dweetio": "0.0.11"
   },
   "devDependencies": {},
   "scripts": {
