@@ -8,11 +8,10 @@
 //   }
 
 //   getParkings();
+console.log("alksdhjf;lnadf;lknbkflb;jlknbmkl");
 
 const socket = io();
 
-io.connect('http://localhost:8080');
-
-socket.on('status', function(data) {
-  console.log(data.temp);
+socket.on('server-data', function (data) {
+  console.log(data);
 });

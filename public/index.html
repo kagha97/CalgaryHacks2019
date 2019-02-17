@@ -1,73 +1,77 @@
 <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <title>Calgary Parking Monitor</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-      <link rel="stylesheet" href= "style.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    </head>
-  <body>
-    <div class="jumbotron text-center">
-      <h1>Calgary Parking Monitor</h1>
-      <p>Welcome!</p> 
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <h3>List of Parkings</h3>
-          <button id = "location" type="button" class="btn btn-success">University of Calgary</button>
+<html lang="en">
+
+<head>
+  <title>Calgary Parking Monitor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="jumbotron text-center">
+    <h1>Calgary Parking Monitor</h1>
+    <p>Welcome!</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h3>List of Parkings</h3>
+        <button id="location" type="button" class="btn btn-success">University of Calgary</button>
         <br>
-          <button id = "location" type="button" class="btn btn-success">City Hall</button>
-          <br>
-          <button id = "location" type="button" class="btn btn-success">Test</button>
-        </div>
-        <div class="col-sm-4">
-          <h3>Information</h3>
-          <div class="card" style="width: 18rem;" >
-            <div class="card-body" style="background-color:cornflowerblue">
-              <h5 class="card-title">Title</h5>
-              <p class="card-text">University Of Calgary</p>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;" >
-            <div class="card-body" style="background-color:rgb(17, 106, 189)">
-              <h5 class="card-title">Address</h5>
-              <p class="card-text">UofC Drive 3202 T3N0P5 Calgary, AB</p>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;" >
-            <div class="card-body" style="background-color:rgb(41, 135, 197)">
-              <h5 class="card-title">Cost</h5>
-              <p class="card-text">$20.00</p>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;" >
-            <div class="card-body" style="background-color:rgb(62, 177, 206)">
-              <h5 class="card-title">Time</h5>
-              <p class="card-text">9:30AM to 9:30PM</p>
-            </div>
+        <button id="location" type="button" class="btn btn-success">City Hall</button>
+        <br>
+        <button id="location" type="button" class="btn btn-success">Test</button>
+      </div>
+      <div class="col-sm-4">
+        <h3>Information</h3>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body" style="background-color:cornflowerblue">
+            <h5 class="card-title">Title</h5>
+            <p class="card-text">University Of Calgary</p>
           </div>
         </div>
-        <div class="col-sm-4">
-          <h3>Space</h3>   
-          <div class="card" style="width: 18rem;" >
-            <div class="card-body" style="background-color:rgb(180, 142, 38)">
-              <h5 class="card-title">Available Space</h5>
-              <p class="card-text">30</p>
-            </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body" style="background-color:rgb(17, 106, 189)">
+            <h5 class="card-title">Address</h5>
+            <p class="card-text">UofC Drive 3202 T3N0P5 Calgary, AB</p>
           </div>
-          <div class="card" style="width: 18rem;" >
-            <div class="card-body" style="background-color:rgb(211, 145, 24)">
-              <h5 class="card-title">Total Space</h5>
-              <p class="card-text">50</p>
-            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body" style="background-color:rgb(41, 135, 197)">
+            <h5 class="card-title">Cost</h5>
+            <p class="card-text">$20.00</p>
           </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body" style="background-color:rgb(62, 177, 206)">
+            <h5 class="card-title">Time</h5>
+            <p class="card-text">9:30AM to 9:30PM</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <h3>Space</h3>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body" style="background-color:rgb(180, 142, 38)">
+            <h5 class="card-title">Available Space</h5>
+            <p class="card-text">30</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body" style="background-color:rgb(211, 145, 24)">
+            <h5 class="card-title">Total Space</h5>
+            <p class="card-text">50</p>
+          </div>
+        </div>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="index.js"></script>
+</body>
+
 </html>
