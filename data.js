@@ -1,49 +1,29 @@
- const dweetThing = "smart-parking-calgaryhacks-2019";
- var parkings = {
-    UofC: {
-        id: 1,
-        title : "University of Calgary",
-        availableSpot: 300,
-        totalSpot: 300,
-        prices : {hr : 10, day : 20, month : 250},
-        hours : {weekdays : "9am to 9pm", weekends : "7am to 11pm"}
-    },
+const dweetThing = "smart-parking-calgaryhacks-2019";
 
-    BowValley : {
-        id: 2,
-        title : "Bow Valley College",
-        availableSpot: 150,
-        totalSpot: 150,
-        prices : {hr : 15, day : 20, month : 350},
-        hours : {weekdays : "24hr", weekends : "24hr"}
-    },
+//import mongoose module
+const mongoose = require('mongoose');
 
-    Superstore : {
-        id: 3,
-        title: "Super Store, Mcnight",
-        availableSpot: 200,
-        totalSpot: 200,
-        prices : {hr : 10, day : 28, month : 300},
-        hours : {weekdays : "9am to 9pm", weekends : "7am to 11pm"}
-    },
+//get connection reference
+const dbConnection = mongoose.connect('mongodb://localhost:27017/smart_parking', {
+    useNewUrlParser: true
+});
 
-    MarlboroughMall : {
-        id: 4,
-        title : "Marlborough Mall",
-        availableSpot: 0,
-        totalSpot: 200,
-        prices : {hr : 7, day : 20, month : 224},
-        hours : {weekdays : "24hr", weekends : "24hr"}
-    },
+var parkingSchema = mongoose.Schema({
+    title : String,
+    availableSpot : Number,
+    totalSpot : Number,
+    prices : Object,
+    hours : Object,
+});
 
-    SunridgeMall : {
-        id: 5,
-        title : "Sunridge Mall",
-        availableSpot: 0,
-        totalSpot: 300,
-        prices : {hr : 7, day : 18, month : 170},
-        hours : {weekdays : "9am to 9pm", weekends : "7am to 11pm"}
-    }
- };
+var ParkingModel = mongoose.model('parking', parkingSchema, 'parkings');
 
-module.exports = {dweetThing, parkings};
+//list of ports
+const port1 =  {port : 'COM6'};
+const port2 = {port : 'COM9'};
+const port3 = {port : 'COM12'};
+const ports = [port1, port2, port3];
+//list of parking titles
+const listOfParkings = ['University of Calgary', 'Sunridge Mall', 'Bow Valley College'];
+
+module.exports = {dweetThing, ports, dbConnection, ParkingModel, listOfParkings};
