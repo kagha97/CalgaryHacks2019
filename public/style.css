@@ -1,3 +1,21 @@
 #location {
     margin-top: 2px;
 }
+
+
+#banner {
+    background-image: url("images/.png");
+    background-image:  center;
+    background-repeat: no-repeat; 
+    background-color: dimgray;
+}
+
+
+#logo {
+    height: 100px;
+    widows: 100px;
+}
+
+
+
+
